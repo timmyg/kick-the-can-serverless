@@ -23,7 +23,7 @@ provider:
 
 functions:
   hello:
-    handler: functions/firebase/handler.hello
+    handler: functions/firebase/hello.helloWorld
 
     events:
       - http: GET hello
