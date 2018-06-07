@@ -24,9 +24,14 @@ provider:
 functions:
   hello:
     handler: functions/firebase/hello.helloWorld
-
     events:
       - http: GET hello
+  account:
+    handler: functions/firebase/account.create
+    events:
+      - http: 
+          path: account
+          method: post
 
 # you can overwrite defaults here
 #  stage: devc

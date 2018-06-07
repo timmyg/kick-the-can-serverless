@@ -1,0 +1,15 @@
+{
+  "name": "kick-the-can-webapp-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "serverless deploy -v --aws-profile ktc",
+    "logs.account": "serverless logs --function account --aws-profile ktc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
