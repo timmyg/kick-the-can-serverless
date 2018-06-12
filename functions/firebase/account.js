@@ -1,8 +1,11 @@
 'use strict';
 const axios = require("axios");
-const firebaseApiKey = process.env.firebaseApiKey;
+const firebaseApiKey = process.env.FIREBASE_API_KEY;
 
 module.exports.create = async (event, context, callback) => {
+  if (!firebaseApiKey) {
+    console.error("No firebase api key set")
+  }
   const body = JSON.parse(event.body);
   const url =
     "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + firebaseApiKey;

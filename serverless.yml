@@ -11,15 +11,19 @@
 #
 # Happy Coding!
 
-service: kick-the-can-webapp-microservice
+service: kick-the-can-webapp-serverless
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-# frameworkVersion: "=X.X.X"
+frameworkVersion: ">=1.27.0"
+
+custom:
+  stage: "${opt:stage, self:provider.stage}"
 
 provider:
   name: aws
   runtime: nodejs8.10
+  environment: ${file(env.yml):${self:custom.stage}}
 
 functions:
   hello:
@@ -32,6 +36,8 @@ functions:
       - http: 
           path: account
           method: post
+
+          
 
 # you can overwrite defaults here
 #  stage: devc

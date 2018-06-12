@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "serverless deploy -v --aws-profile ktc",
-    "logs.account": "serverless logs --function account --aws-profile ktc"
+    "deploy:dev": "serverless deploy -v --aws-profile kickthecan:dev --stage dev",
+    "deploy:prod": "serverless deploy -v --aws-profile kickthecan:prod --stage prod",
+    "logs.account.dev": "serverless logs --function account --stage dev"
   },
   "author": "",
   "license": "ISC",
