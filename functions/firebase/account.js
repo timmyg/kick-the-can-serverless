@@ -13,6 +13,10 @@ module.exports.create = async (event, context, callback) => {
     const res = await axios.post(url, body);
     callback(null, {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify(res.data),
     });
   } catch (err) {

@@ -36,6 +36,7 @@ functions:
       - http: 
           path: account
           method: post
+          cors: true
 
           
 
