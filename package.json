@@ -4,15 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "creds:config": "serverless config credentials --provider aws --key '$AWS_KEY' --secret '$AWS_SECRET'",
-    "deploy:dev": "serverless deploy -v --aws-profile kickthecan:dev --stage dev",
-    "deploy:prod": "serverless deploy -v --aws-profile kickthecan:prod --stage prod",
+    "creds:config:dev": "serverless config credentials --provider aws --key '$AWS_KEY_DEV' --secret '$AWS_SECRET_DEV'",
+    "creds:config:prod": "serverless config credentials --provider aws --key '$AWS_KEY_PROD' --secret '$AWS_SECRET_PROD'",
+    "deploy:dev": "serverless deploy -v --stage dev",
+    "deploy:prod": "serverless deploy -v --stage prod",
     "logs.account.dev": "serverless logs --function account --stage dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
     "serverless": "^1.27.3"
   }
 }
