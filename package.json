@@ -15,5 +15,7 @@
   "dependencies": {
     "axios": "^0.18.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "serverless": "^1.27.3"
+  }
 }
