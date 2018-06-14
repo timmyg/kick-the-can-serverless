@@ -6,6 +6,7 @@
   "scripts": {
     "deploy:dev": "serverless deploy -v --aws-profile kickthecan:dev --stage dev",
     "deploy:prod": "serverless deploy -v --aws-profile kickthecan:prod --stage prod",
+    "deploy:prod:ci": "serverless config credentials --provider aws --key '$AWS_KEY' --secret '$AWS_SECRET' --stage dev",
     "logs.account.dev": "serverless logs --function account --stage dev"
   },
   "author": "",
