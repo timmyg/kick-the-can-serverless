@@ -13,7 +13,8 @@ test('account create success', async (done) => {
     //     .post('/identitytoolkit/v3/relyingparty/signupNewUser?key=undefined', JSON.stringify(requestBody))
     //     .query(true)
     //     .reply(200, {}, responseOk);
-    nock('https://www.googleapis.com').post(() => true) .reply(200, responseOk);
+    // nock('https://www.googleapis.com').post(() => true) .reply(200, responseOk);
+    nock('https://www.googleapis.com').post('/identitytoolkit/v3/relyingparty/signupNewUser').reply(200, responseOk);
 
     const callback = (cxt, data) => {
         console.log("data", JSON.parse(data.body));
