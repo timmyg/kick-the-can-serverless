@@ -3,6 +3,7 @@ const axios = require("axios");
 const firebaseApiKey = process.env.FIREBASE_API_KEY;
 
 module.exports.create = async (event, context, callback) => {
+  // console.log("process.env", process.env);
   if (!firebaseApiKey) {
     console.error("No firebase api key set")
   }
