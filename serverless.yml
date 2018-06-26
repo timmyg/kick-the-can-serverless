@@ -37,6 +37,13 @@ functions:
           path: account
           method: post
           cors: true
+  project:
+    handler: functions/firebase/project.create
+    events:
+      - http: 
+          path: project
+          method: post
+          cors: true
 
           
 
