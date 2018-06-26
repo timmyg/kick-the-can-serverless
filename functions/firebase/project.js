@@ -30,7 +30,8 @@ module.exports.create = async (event, context, callback) => {
   const url = "https://kick-the-can.firebaseio.com/projects.json?auth=" + event.headers.Authorization;
   try {
     // const res = await axios.post(url, body);
-    const res = await axios.post(url, data)
+    const res = await axios.post(url, body)
+    console.log("res");
     callback(null, {
       statusCode: 200,
       headers: {
@@ -40,6 +41,7 @@ module.exports.create = async (event, context, callback) => {
       body: JSON.stringify(res.data),
     });
   } catch (err) {
+    console.log("catch", err);
     const response = {
       statusCode: err.response.data.error.code,
       body: JSON.stringify(err.response.data)
