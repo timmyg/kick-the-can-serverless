@@ -24,9 +24,10 @@ function generateGuid() {
   }
 
 module.exports.create = async (event, context, callback) => {
-  console.log("proj create", event);
+  // console.log("proj create", event);
   const body = checkAndGetBody(event)
   body.apiKey = generateGuid()
+  console.log('body', body);
   const url = "https://kick-the-can.firebaseio.com/projects.json?auth=" + event.headers.Authorization;
   try {
     // const res = await axios.post(url, body);
