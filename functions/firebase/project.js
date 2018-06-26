@@ -27,10 +27,10 @@ module.exports.create = async (event, context, callback) => {
   console.log("proj create", event);
   const body = checkAndGetBody(event)
   body.apiKey = generateGuid()
-  const url = "https://kick-the-can.firebaseio.com/projects.json?auth=" + event.headers.Authorization,
+  const url = "https://kick-the-can.firebaseio.com/projects.json?auth=" + event.headers.Authorization;
   try {
     // const res = await axios.post(url, body);
-    const res = await this.$axios.post(url, data)
+    const res = await axios.post(url, data)
     callback(null, {
       statusCode: 200,
       headers: {
