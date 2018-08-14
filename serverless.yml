@@ -45,7 +45,7 @@ functions:
           method: post
           cors: true
 
-          
+           
 
 # you can overwrite defaults here
 #  stage: devc
