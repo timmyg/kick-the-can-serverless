@@ -1,5 +1,7 @@
 'use strict';
 const axios = require("axios");
+const neo4j = require('neo4j');
+var db = new neo4j.GraphDatabase(process.env.GRAPHENEDB_URL);
 const firebaseApiKey = process.env.FIREBASE_API_KEY;
 
 function checkAndGetBody(event) {
@@ -24,7 +26,13 @@ function generateGuid() {
   }
 
 module.exports.create = async (event, context, callback) => {
-  // console.log("proj create", event);
+  // db.cypher({
+  //   query: 'MATCH (a:Artist) RETURN COUNT(a) AS count'
+  // }, function(err, responses) {
+  //   cb(null, {
+  //     message: 'Currently stores ' + responses[0].count + ' artists', event
+  //   });
+  // });
   const body = checkAndGetBody(event)
   body.apiKey = generateGuid()
   console.log('body', body);

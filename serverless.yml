@@ -39,6 +39,8 @@ functions:
           cors: true
   project:
     handler: functions/firebase/project.create
+    environment:
+      GRAPHENEDB_URL: ${env:GRAPHENEDB_URL}
     events:
       - http: 
           path: project
