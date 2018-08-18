@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: kick-the-can-webapp-serverless
+service: kick-the-can-serverless
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -19,6 +19,7 @@ frameworkVersion: ">=1.27.0"
 
 custom:
   stage: "${opt:stage, self:provider.stage}"
+  cors: true
 
 provider:
   name: aws
@@ -27,27 +28,30 @@ provider:
 
 functions:
   hello:
-    handler: functions/firebase/hello.helloWorld
+    handler: functions/hello.helloWorld
     events:
       - http: GET hello
-  account:
-    handler: functions/firebase/account.create
+  accountCreate:
+    handler: functions/account.create
     events:
-      - http: 
+      - http:
           path: account
           method: post
           cors: true
-  project:
-    handler: functions/firebase/project.create
-    environment:
-      GRAPHENEDB_URL: ${env:GRAPHENEDB_URL}
+  projectGet:
+    handler: functions/project.get
     events:
-      - http: 
+      - http:
+          path: project
+          method: get
+          cors: true
+  projectCreate:
+    handler: functions/project.create
+    events:
+      - http:
           path: project
           method: post
           cors: true
-
-           
 
 # you can overwrite defaults here
 #  stage: devc
@@ -81,8 +85,6 @@ functions:
 #  exclude:
 #    - exclude-me.js
 #    - exclude-me-dir/**
-
-
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

@@ -1,5 +1,5 @@
 {
-  "name": "kick-the-can-webapp-microservice",
+  "name": "kick-the-can-serverless",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,16 @@
     "deploy:prod": "serverless deploy -v --stage prod --aws-profile kickthecan:prod",
     "logs:account:dev": "serverless logs --function account --stage dev --aws-profile kickthecan:dev",
     "logs:account:prod": "serverless logs --function account --stage prod --aws-profile kickthecan:prod",
-    "invoke.account": "serverless invoke local --function account --path test/data/new-account.json"
+    "invoke.hello": "serverless invoke local --function hello --path test/data/new-account.json",
+    "invoke.projectCreate": "serverless invoke local --function projectCreate --path test/data/new-account.json"
   },
   "jest": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "neo4j": "^2.0.0-RC2"
+    "neo4j": "^2.0.0-RC2",
+    "randomstring": "^1.1.5"
   },
   "devDependencies": {
     "jest": "^23.1.0",
