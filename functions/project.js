@@ -1,9 +1,11 @@
+var Promise = require("bluebird");
 const neo4j = require("neo4j");
 const randomstring = require("randomstring");
 const db = new neo4j.GraphDatabase(process.env.GRAPHENEDB_URL);
+const cypher = Promise.promisify(db.cypher.bind(db));
 
 module.exports.create = async (event, context, callback) => {
-    db.cypher({
+    const results = cypher({
         query: 'CREATE (project:Project {name: {name}, user: {user}, apiKey: {apiKey}}) RETURN project',
         params: {
             name: "project-yellow",
@@ -13,42 +15,33 @@ module.exports.create = async (event, context, callback) => {
                 charset: 'hex'
             })
         }
-    }, function (err, results) {
-        var result = results[0];
-        if (err) {
-            return callback(null, {
-                message: 'Error saving new node to database:',
-                err
-            });
-        } else {
-            console.log(result);
-            return callback(null, {
-                message: `Node saved to database: ${result}`
-            });
-        }
+    });
+    return callback(null, {
+        message: `Node saved to database: ${results}`
     });
 }
 
 module.exports.get = async (event, context, callback) => {
     console.log("yo");
-    db.cypher({
-        query: 'MATCH (project:Project {name: {name}, user: {user}}) RETURN project',
-        params: {
-            name: "project-blue",
-            user: "user1"
-        }
-    }, function (err, results) {
-        console.log(err, results);
-        if (err) {
-            return callback(null, {
-                message: 'Error saving new node to database:',
-                err
-            });
-        } else {
-            console.log(results);
-            return callback(null, {
-                message: `Node found: ${JSON.stringify(results.length)}`
-            });
-        }
-    });
+    console.time("projectGet")
+    try {
+        const results = await cypher({
+            // query: 'MATCH (project:Project {name: {name}, user: {user}}) RETURN project',
+            query: 'MATCH (project:Project {user: {user}}) RETURN project.apiKey',
+            // query: 'MATCH (project:Project {name: {name}, user: {user}}) RETURN project.apiKey',
+            params: {
+                // name: "project-blue",
+                user: "user1"
+            }
+        })
+        console.timeEnd("projectGet")
+        return callback(null, {
+            message: `Node found: ${JSON.stringify(results)}`
+        });
+    } catch (e) {
+        console.timeEnd("projectGet")
+        return callback(null, {
+            message: `Error: ${e}`
+        });
+    }
 };

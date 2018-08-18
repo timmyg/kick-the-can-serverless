@@ -28,7 +28,7 @@ module.exports.create = async (event, context, callback) => {
       body: JSON.stringify(res.data),
     });
   } catch (err) {
-    console.error("errrr", err);
+    // console.error("errrr", err);
     const response = {
       statusCode: err.response.data.error.code,
       body: JSON.stringify(err.response.data)
