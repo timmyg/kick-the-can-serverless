@@ -19,8 +19,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "jsonwebtoken": "^8.3.0",
     "neo4j-driver": "^1.6.3",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "jest": "^23.1.0",
